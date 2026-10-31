@@ -5,6 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daniel 😎</title>
+    <script>
+      window.tailwind = {
+        config: {
+          corePlugins: {
+            preflight: false,
+          },
+        },
+      };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="main.css" />
     <link rel="icon" href="https://fav.farm/😎" />
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -166,11 +176,11 @@
         <h2 class="title">My Skills</h2>
         <div class="skills-content">
           <div class="column left">
-              <div class="text">
+              <div class="text !text-white">
               <strong>My Creative skills & Experiences</strong>
             </div>
             <br />
-              <p>
+              <p class="!text-white leading-relaxed">
                 I am a motivated developer with hands-on experience building
                 responsive websites, interactive projects, and practical tools.
                 I enjoy turning ideas into reliable solutions while continually
@@ -181,108 +191,136 @@
           <div class="column right">
               <div class="bars">
                 <div class="info">
-                  <span>HTML / CSS</span>
-                  <span>90%</span>
+                  <span class="!text-white font-medium">HTML / CSS</span>
+                  <span class="!text-white font-medium">90%</span>
                 </div>
                 <div
-                  class="line"
+                  class="line !h-2 !w-full !overflow-hidden !rounded-full !bg-[#070b1e]"
                   role="progressbar"
                   aria-label="HTML / CSS"
                   aria-valuemin="0"
                   aria-valuemax="100"
                   aria-valuenow="90"
                   style="--skill-level: 90%"
-                ></div>
+                >
+                  <span
+                    class="skill-fill block h-full rounded-full bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-400 shadow-[0_0_12px_rgba(192,132,252,0.55)] transition-[width] duration-700 ease-out"
+                  ></span>
+                </div>
               </div>
               <div class="bars">
                 <div class="info">
-                  <span>JavaScript</span>
-                  <span>85%</span>
+                  <span class="!text-white font-medium">JavaScript</span>
+                  <span class="!text-white font-medium">85%</span>
                 </div>
                 <div
-                  class="line"
+                  class="line !h-2 !w-full !overflow-hidden !rounded-full !bg-[#070b1e]"
                   role="progressbar"
                   aria-label="JavaScript"
                   aria-valuemin="0"
                   aria-valuemax="100"
                   aria-valuenow="85"
                   style="--skill-level: 85%"
-                ></div>
+                >
+                  <span
+                    class="skill-fill block h-full rounded-full bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-400 shadow-[0_0_12px_rgba(192,132,252,0.55)] transition-[width] duration-700 ease-out"
+                  ></span>
+                </div>
               </div>
               <div class="bars">
                 <div class="info">
-                  <span>Vue.js</span>
-                  <span>80%</span>
+                  <span class="!text-white font-medium">Vue.js</span>
+                  <span class="!text-white font-medium">80%</span>
                 </div>
                 <div
-                  class="line"
+                  class="line !h-2 !w-full !overflow-hidden !rounded-full !bg-[#070b1e]"
                   role="progressbar"
                   aria-label="Vue.js"
                   aria-valuemin="0"
                   aria-valuemax="100"
                   aria-valuenow="80"
                   style="--skill-level: 80%"
-                ></div>
+                >
+                  <span
+                    class="skill-fill block h-full rounded-full bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-400 shadow-[0_0_12px_rgba(192,132,252,0.55)] transition-[width] duration-700 ease-out"
+                  ></span>
+                </div>
               </div>
               <div class="bars">
                 <div class="info">
-                  <span>PHP + PDO</span>
-                  <span>85%</span>
+                  <span class="!text-white font-medium">PHP + PDO</span>
+                  <span class="!text-white font-medium">85%</span>
                 </div>
                 <div
-                  class="line"
+                  class="line !h-2 !w-full !overflow-hidden !rounded-full !bg-[#070b1e]"
                   role="progressbar"
                   aria-label="PHP + PDO"
                   aria-valuemin="0"
                   aria-valuemax="100"
                   aria-valuenow="85"
                   style="--skill-level: 85%"
-                ></div>
+                >
+                  <span
+                    class="skill-fill block h-full rounded-full bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-400 shadow-[0_0_12px_rgba(192,132,252,0.55)] transition-[width] duration-700 ease-out"
+                  ></span>
+                </div>
               </div>
               <div class="bars">
                 <div class="info">
-                  <span>Tailwind CSS</span>
-                  <span>80%</span>
+                  <span class="!text-white font-medium">Tailwind CSS</span>
+                  <span class="!text-white font-medium">80%</span>
                 </div>
                 <div
-                  class="line"
+                  class="line !h-2 !w-full !overflow-hidden !rounded-full !bg-[#070b1e]"
                   role="progressbar"
                   aria-label="Tailwind CSS"
                   aria-valuemin="0"
                   aria-valuemax="100"
                   aria-valuenow="80"
                   style="--skill-level: 80%"
-                ></div>
+                >
+                  <span
+                    class="skill-fill block h-full rounded-full bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-400 shadow-[0_0_12px_rgba(192,132,252,0.55)] transition-[width] duration-700 ease-out"
+                  ></span>
+                </div>
               </div>
               <div class="bars">
                 <div class="info">
-                  <span>MySQL</span>
-                  <span>80%</span>
+                  <span class="!text-white font-medium">MySQL</span>
+                  <span class="!text-white font-medium">80%</span>
                 </div>
                 <div
-                  class="line"
+                  class="line !h-2 !w-full !overflow-hidden !rounded-full !bg-[#070b1e]"
                   role="progressbar"
                   aria-label="MySQL"
                   aria-valuemin="0"
                   aria-valuemax="100"
                   aria-valuenow="80"
                   style="--skill-level: 80%"
-                ></div>
+                >
+                  <span
+                    class="skill-fill block h-full rounded-full bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-400 shadow-[0_0_12px_rgba(192,132,252,0.55)] transition-[width] duration-700 ease-out"
+                  ></span>
+                </div>
               </div>
               <div class="bars">
                 <div class="info">
-                  <span>Bash Scripting</span>
-                  <span>75%</span>
+                  <span class="!text-white font-medium">Bash Scripting</span>
+                  <span class="!text-white font-medium">75%</span>
                 </div>
                 <div
-                  class="line"
+                  class="line !h-2 !w-full !overflow-hidden !rounded-full !bg-[#070b1e]"
                   role="progressbar"
                   aria-label="Bash Scripting"
                   aria-valuemin="0"
                   aria-valuemax="100"
                   aria-valuenow="75"
                   style="--skill-level: 75%"
-                ></div>
+                >
+                  <span
+                    class="skill-fill block h-full rounded-full bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-400 shadow-[0_0_12px_rgba(192,132,252,0.55)] transition-[width] duration-700 ease-out"
+                  ></span>
+                </div>
               </div>
           </div>
         </div>
