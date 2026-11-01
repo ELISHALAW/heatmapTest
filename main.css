@@ -340,21 +340,41 @@ resized to fit its container */
 }
 .services .serv-content .card
 {
-    width:calc(33% - 20px);
+    width:100%;
     background:#222;
     text-align:center;
     border-radius:6px;
-    padding:20px 25px;
+    padding:24px;
     cursor:pointer;
     transition:all 0.5s ease-in;
+    display:flex;
 }
 .services .serv-content .card:hover 
 {
-    background:purple;
+    background:#222;
 }
 .services .serv-content .card .box
 {
     transition:all 0.5s ease-in;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+.services .serv-content
+{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    grid-auto-rows:1fr;
+    align-items:stretch;
+    gap:20px;
+}
+.services .serv-content .card img
+{
+    display:block;
+    width:200px;
+    height:200px;
+    object-fit:contain;
 }
 .services .serv-content .card:hover .box 
 {
@@ -364,7 +384,12 @@ resized to fit its container */
 {
     font-size:25px;
     font-weight:500;
-    margin:10px 0 7px 0;
+    margin:10px 0 0;
+    min-height:36px;
+}
+.services .serv-content .card p
+{
+    margin:24px 0 0;
 }
 
 /* skills section styling */
@@ -807,8 +832,11 @@ footer span a:hover
     }
     .services .serv-content .card
     {
-        width:calc(50% - 10px);
-        margin-bottom:20px;
+        width:100%;
+    }
+    .services .serv-content
+    {
+        grid-template-columns:repeat(2, minmax(0, 1fr));
     }
     .skills .skills-content .column,
     .contact .contact-content .column 
@@ -841,6 +869,10 @@ footer span a:hover
     .services .serv-content .card
     {
         width:100%;
+    }
+    .services .serv-content
+    {
+        grid-template-columns:1fr;
     }
     
 
