@@ -1,125 +1,68 @@
-$(document).ready(function(){
-    $(window).scroll(function(){
-        if(this.scrollY > 20){
-            $('.navbar').addClass("sticky");
-        }else{
-            $('.navbar').removeClass("sticky");
+const header = document.querySelector(".site-header");
+const navToggle = document.querySelector(".nav-toggle");
+const navLinks = document.querySelector(".nav-links");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-        }
-        if(this.scrollY > 500){
-            $('.scroll-up-btn').addClass("show");
-        }else{
-            $(".scroll-up-btn").removeClass("show")
-        }
-    });
-    // slide-up script 
-    $('.scroll-up-btn').click(function(){
-        $('html').animate({scrollTop:0});
-    });
+document.querySelector("#current-year").textContent = new Date().getFullYear();
 
-    // toggle menu/navbar script 
-    $('.menu-btn').click(function(){
-        $('.navbar .menu').toggleClass("active");
-        $('.menu-btn i').toggleClass("active");
-    });
-
-    // typing animation script 
-    var typed = new Typed(".typing",{
-        strings:["IT developer","Front-end developer","Software Support","Back-end developer"," Wed Developer"],
-        typeSpeed:100,
-        backSpeed:60,
-        loop:true
-    })
-    var typed = new Typed(".typing-2",{
-        strings:["IT developer","Front-end developer","Software Support","Back-end developer","Wed Developer"],
-        typeSpeed:100,
-        backSpeed:60,
-        loop:true
-    })
-
-    // owl carousel script 
-    $('.carousel').owlCarousel({
-        margin:20,
-        loop:true,
-        autoplayTimeOut:2000,
-        autoplayHoverPause:true,
-        responsive:{
-            0:{
-                items:1,
-                nav:false
-            },
-            600:{
-                items:2,
-                nav:false
-
-            },
-            1000:{
-                items:3,
-                nav:false
-            }
-        }
-
-
-    });
-});
-
-
-
-let clickHistory = [];
-let hoverTimer;
-const ATTENTION_THRSEHOLD = 500;
-
-document.addEventListener('click', (e)=>{
-    clickHistory.push({
-        x:e.pageX,
-        y:e.pageY,
-        type:'click'
-    })
-})
-document.addEventListener('mousemove', (e)=>{
-    clearTimeout(hoverTimer);
-
-    hoverTimer = setTimeout(()=>{
-        clickHistory.push({x: e.pageX, y: e.pageY, type:'hover'});
-    },ATTENTION_THRSEHOLD);
-});
-
-async function captureFullReport(){
-    if(clickHistory.length === 0) return;
-
-    const siteScreenshot = await html2canvas(document.body,{
-        useCORS:true,
-        allowTaint:true,
-        logging:false,
-        scale:1,
-        scrollX:0,
-        scrollY:0,
-        windowWidth:window.innerWidth,
-        height:document.body.scrollHeight,
-        backgroundColor:null
-    });
-
-    const ctx = siteScreenshot.getContext('2d');
-
-    clickHistory.forEach(point =>{
-        const radius = point.type === 'click' ? 60:40;
-
-        const alpha = point.type === 'click' ? 0.6 : 0.3;
-
-        const grad = ctx.createRadialGradient(point.x, point.y , 0, point.x, point.y, radius);
-        grad.addColorStop(0, `rgba(255,0,0, ${alpha})`);
-        grad.addColorStop(1, `rgba(255,0,0,0)`);
-
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(point.x, point.y, radius,0, Math.PI * 2);
-        ctx.fill();
-    });
-
-
-    const link = document.createElement('a');
-    link.download = `Heatmap_Report_${Date.now()}.png`;
-    link.href = siteScreenshot.toDataURL('image/png');
-    link.click();
+function updateHeader() {
+  header.classList.toggle("is-scrolled", window.scrollY > 12);
 }
 
+updateHeader();
+window.addEventListener("scroll", updateHeader, { passive: true });
+
+navToggle.addEventListener("click", () => {
+  const isExpanded = navToggle.getAttribute("aria-expanded") === "true";
+  navToggle.setAttribute("aria-expanded", String(!isExpanded));
+  navToggle.setAttribute("aria-label", isExpanded ? "Open navigation" : "Close navigation");
+  navLinks.classList.toggle("is-open", !isExpanded);
+});
+
+navLinks.addEventListener("click", (event) => {
+  if (event.target.closest("a")) {
+    navToggle.setAttribute("aria-expanded", "false");
+    navToggle.setAttribute("aria-label", "Open navigation");
+    navLinks.classList.remove("is-open");
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    navToggle.setAttribute("aria-expanded", "false");
+    navToggle.setAttribute("aria-label", "Open navigation");
+    navLinks.classList.remove("is-open");
+  }
+});
+
+const roles = ["web development", "useful software", "thoughtful interfaces", "learning by building"];
+let roleIndex = 0;
+const roleText = document.querySelector("#role-text");
+
+if (!reduceMotion) {
+  window.setInterval(() => {
+    roleText.classList.add("role-changing");
+    window.setTimeout(() => {
+      roleIndex = (roleIndex + 1) % roles.length;
+      roleText.textContent = roles[roleIndex];
+      roleText.classList.remove("role-changing");
+    }, 180);
+  }, 2800);
+}
+
+if ("IntersectionObserver" in window && !reduceMotion) {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll(".section-heading, .about-note, .about-copy, .about-facts, .expertise-card, .skills-board, .project-card, .contact-inner > *")
+    .forEach((element) => {
+      element.classList.add("reveal");
+      revealObserver.observe(element);
+    });
+}
