@@ -1,6 +1,7 @@
 const header = document.querySelector(".site-header");
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector(".nav-links");
+const contactForm = document.querySelector("#contact-form");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 document.querySelector("#current-year").textContent = new Date().getFullYear();
@@ -24,6 +25,47 @@ navLinks.addEventListener("click", (event) => {
     navToggle.setAttribute("aria-expanded", "false");
     navToggle.setAttribute("aria-label", "Open navigation");
     navLinks.classList.remove("is-open");
+  }
+});
+
+contactForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const status = document.querySelector("#contact-status");
+  const submitButton = contactForm.querySelector('[type="submit"]');
+  const originalButtonText = submitButton.innerHTML;
+
+  function showEmailFallback(message) {
+    const emailLink = document.createElement("a");
+    emailLink.href = "mailto:seongchunlaw050@gmail.com";
+    emailLink.textContent = "Email Daniel directly.";
+    status.replaceChildren(document.createTextNode(`${message} `), emailLink);
+  }
+
+  submitButton.disabled = true;
+  submitButton.textContent = "Sending...";
+  status.textContent = "";
+
+  try {
+    const response = await fetch(contactForm.action, {
+      method: "POST",
+      body: new FormData(contactForm),
+      headers: { Accept: "application/json" },
+    });
+
+    if (!response.ok) {
+      showEmailFallback("Your message couldn’t be sent. Please try again or");
+      return;
+    }
+
+    contactForm.reset();
+    status.textContent = "Thanks! Your message has been sent.";
+  } catch (error) {
+    console.error("Contact form submission failed:", error);
+    showEmailFallback("We couldn’t connect to the form service. Please try again or");
+  } finally {
+    submitButton.disabled = false;
+    submitButton.innerHTML = originalButtonText;
   }
 });
 

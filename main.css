@@ -1075,13 +1075,26 @@ button {
 
 .contact-inner {
   display: grid;
-  align-items: end;
+  align-items: start;
   gap: 60px;
   grid-template-columns: 1.1fr 0.9fr;
 }
 
+.contact-heading {
+  position: sticky;
+  top: 120px;
+}
+
 .contact-inner h2 {
   font-size: clamp(46px, 6vw, 72px);
+}
+
+.contact-intro {
+  max-width: 390px;
+  margin: 24px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
 }
 
 .contact-aside {
@@ -1089,11 +1102,68 @@ button {
   justify-self: end;
 }
 
-.contact-aside > p {
-  margin: 0 0 22px;
-  color: #b4b3be;
-  font-size: 13px;
-  line-height: 1.8;
+.contact-form {
+  display: grid;
+  gap: 17px;
+}
+
+.form-field {
+  display: grid;
+  gap: 8px;
+}
+
+.form-field label {
+  color: #d3d1dc;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 12px 13px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  outline: none;
+  background: rgba(18, 20, 29, 0.78);
+  color: var(--text);
+  font: 13px/1.6 var(--font-display);
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.form-field textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: rgba(167, 139, 250, 0.75);
+  background: var(--surface);
+}
+
+.contact-form .button {
+  justify-self: start;
+  cursor: pointer;
+}
+
+.form-note,
+.form-status {
+  margin: -7px 0 0;
+  color: var(--faint);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.form-status:empty {
+  display: none;
+}
+
+.form-status a {
+  color: var(--accent-bright);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .contact-links {
@@ -1245,6 +1315,7 @@ button {
   .contact-inner { gap: 35px; grid-template-columns: 1fr; }
   .contact-inner h2 { font-size: clamp(46px, 12vw, 62px); }
   .contact-aside { justify-self: stretch; }
+  .contact-heading { position: static; }
   .footer-inner { min-height: 100px; flex-wrap: wrap; padding-block: 20px; }
   .footer-inner > span { order: 1; width: 100%; }
 }
